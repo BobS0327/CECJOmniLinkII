@@ -1,2 +1,0 @@
-# CECJOmniLinkII
-JomniLink TV connection
