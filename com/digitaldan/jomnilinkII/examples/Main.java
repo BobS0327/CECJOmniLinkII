@@ -134,17 +134,19 @@ public class Main {
                         b2 = ((int) (o.getNotifications())[k] >> 8) & 0xFF;
                         switch (b1) {
                         case 25:  //Turn TV on
-                            System.out.println("TV ON Button Name" + "  "  + "(" + b1 + "):  " +	ReadButtonName(c, b1)  );
-                            break;
-                        case 26:  //Turn TV off
-                            try
+                        try
                             {
-                                Process p = Runtime.getRuntime().exec("echo \"standby 0000\" | cec-client -d 1 -s \"standby 0\" RPI");
+                        	ProcessBuilder processBuilder = 
+                                new ProcessBuilder("bash", "-c", "echo \"on 0\" | cec-client -s");
+                            Process process = processBuilder.start();
                             }
                             catch(Exception e)
                             {
                                 e.printStackTrace();
                             }
+                            System.out.println("TV ON Button Name" + "  "  + "(" + b1 + "):  " +	ReadButtonName(c, b1)  );
+                            break;
+                        case 26:  //Turn TV off
                             System.out.println("TV OFF Button Name" + "  "  + "(" + b1 + "):  " +	ReadButtonName(c, b1)  );
 
                             break;
